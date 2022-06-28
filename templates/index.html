@@ -1,0 +1,161 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Stacked HTML CSS Template</title>
+<!--
+Stacked Template
+https://templatemo.com/tm-505-stacked
+-->
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="static/css_index/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css_index/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="static/css_index/templatemo-style.css">
+
+        <script src="static/js_index/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <nav class="nav">
+          <div class="burger">
+            <div class="burger__patty"></div>
+          </div>
+
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#1" class="nav__link c-blue"><img src="img_index/home-icon.png" alt=""></a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav__link c-yellow scrolly"><img src="img_index/about-icon.png" alt=""></a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav__link c-red"><img src="img_index/about-icon.png" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+
+        <section class="panel b-blue" id="1">
+          <article class="panel__wrapper">
+            <div class="panel__content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="home-content">
+                      <div class="home-heading">
+                        <h1><em>Search</em> Engine</h1>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="home-box-content">
+                            <div class="left-text">
+                              <h4>Search <em>Engine</em> Proposal</h4>
+                              <p>A quick summary about two possible way to approach this challenge using AI, this search engine contains more than 2 thousands News from BBC , they were pre-Analyzed using an AI (from Google). It will search and show the news related or link to the keywords given in the search bar</p>                              <div class="primary-button">
+                                <a href="#2">Discover More</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+        <section class="panel b-yellow" id="2">
+          <article class="panel__wrapper">
+            <div class="panel__content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="about-content">
+                      <div class="heading">
+                        <h4>Search By Keywords</h4>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+        
+                        </div>
+                        <div class="col-md-7 col-md-offset-5">
+                          <div class="about-box-text">
+                            <h4>Best Keyword Index</h4>
+                            <p>The broad search will help you capture and reduce time during searching, but it may also get you the most unnecessary <strong> SPO / Articles </strong>. Exact match search is much more restrictive, but it can also be very productive. You will get the SPO / Article when users query the exact keyword/phrase and nothing else. The down side Keyword searches may also fail to turn up related materials that don't specifically use the search term (false negatives).</p>
+                              <div class="primary-button">
+                                <a href="{{ url_for('to_keyword_engine')}}">Discover More</a>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+        <section class="panel b-red" id="3">
+          <article class="panel__wrapper">
+            <div class="panel__content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="about-content">
+                      <div class="heading">
+                        <h4>Similar Meaning</h4>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-7 col-md-offset-5">
+                          <div class="about-box-text">
+                            <h4>Search by Meaning</h4>
+                            <p>An AI which is able to understand the meaning of the given word, and compare it with other articles, it will also show those  <strong> SOP/Article</strong> related to the phrase that you might be using, is by far more powerful than seach by keywords only. The down side, it must be re-adjust from time to time but there are many tools able to solve this issue.</p>
+                            <div class="primary-button">
+                              <a href="{{ url_for('to_phrase_engine')}}">Discover More</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+        <section class="panel b-green" id="4">
+          <article class="panel__wrapper">
+            <div class="panel__content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="footer">
+                      <p>Copyright &copy; 2022 Marvin Garcia
+                      | Design by TemplateMo</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="static/js_index/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="static/js_index/vendor/bootstrap.min.js"></script>
+
+        <script src="static/js_index/plugins.js"></script>
+        <script src="static/js_index/main.js"></script>
+
+    </body>
+</html>
