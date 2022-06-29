@@ -1,7 +1,7 @@
 import pandas
 import sys
-sys.path.append("./")
-from data_base.core import DATA_BASE_LOCATION, NAME
+sys.path.append(".")
+from search_engines.data_base.core import DATA_BASE_LOCATION, NAME
 
 
 def connect_to_database():
