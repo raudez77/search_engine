@@ -1,3 +1,4 @@
+from unicodedata import category
 from flask import Flask, render_template, request
 from search_engines.engines import search_bar_keywords
 from search_engines.web_list import result_html
@@ -44,14 +45,26 @@ def show_results():
 
     if request.method == "POST":
         for key_ in features_.keys():
-            # Collection form
-            features_[key_] = request.form[key_]
+            try:
+                # Collection form
+                features_[key_] = request.form[key_]
+            except:
+                features_['search_keywords_'] = request.form.get(
+                    'search_keywords_')
+                features_['Category_'] = None  # type: ignore
 
         # Initiate Searching
         final_results = ''
-        results_ = search_bar_keywords(
-            keywords=[features_['search_keywords_']],
-            Category=[features_['Category_']])
+
+        # checking results
+        keyword_ = features_['search_keywords_']
+        if features_['Category_'] == False:
+            categories_ = ""
+        else:
+            categories_ = features_['Category_']
+
+        results_ = search_bar_keywords(keywords=[keyword_],
+                                       Category=categories_)
 
         for query in results_.values:
             final_results += result_html(query[0], query[1])
