@@ -44,6 +44,7 @@ def show_results():
     }
 
     if request.method == "POST":
+        final_results = ''
         for key_ in features_.keys():
             try:
                 # Collection form
@@ -54,7 +55,7 @@ def show_results():
                 features_['Category_'] = ""  # type: ignore
 
         results_ = search_bar_keywords(
-            keywords=features_['search_keywords_'],
+            keywords=features_['search_keywords_'], # type: ignore
             category=features_['Category_'])  # type: ignore
 
         for query in results_.values:
