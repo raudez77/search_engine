@@ -1,5 +1,7 @@
+from typing import List
 from feature_engine.encoding import OneHotEncoder
 from search_engines.data_manager import database
+from search_engines.data_base.core import COLUMNS
 import pandas
 import re
 import sys
@@ -23,7 +25,6 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
     all_keywords = r'\b(?:{})\b'.format('|'.join(
         map(re.escape,
             keywords.lower().split(" "))))
-    cols_return = ['title', 'content', 'filename']
 
     if all(both_keyword_category):
         tmp_criteria = [
@@ -33,12 +34,12 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
         tmp_filter = tmp_filter[(tmp_filter[tmp_criteria] == 1).any(axis=1)]
         tmp_filter = tmp_filter[tmp_filter.content_t.str.contains(
             all_keywords)]
-        return tmp_filter[cols_return]  # type: ignore
+        return tmp_filter[COLUMNS]  # type: ignore
 
     elif all(only_keyword):
         tmp_filter = tmp_filter[tmp_filter.content_t.str.contains(
             all_keywords)]
-        return tmp_filter[cols_return]  # type: ignore
+        return tmp_filter[COLUMNS]  # type: ignore
 
     elif all(only_category):
         tmp_criteria = [
@@ -46,4 +47,14 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
             for name in category.lower().split(" ")
         ]
         tmp_filter = tmp_filter[(tmp_filter[tmp_criteria] == 1).any(axis=1)]
-        return tmp_filter[cols_return]
+        return tmp_filter[COLUMNS]
+
+
+def search_bar_meaning(*, indexes: List) -> pandas.DataFrame:
+    """ Return NTop result 
+    Arg:
+        indexes: best N_top indexes from Pipelines
+    Return:
+        Best Matches"""
+
+    return database.iloc[indexes][COLUMNS]  # type: ignore

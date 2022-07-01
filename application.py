@@ -1,10 +1,10 @@
+import sys
+import os
+sys.path.append(".")
 from unicodedata import category
 from flask import Flask, render_template, request
 from search_engines.engines import search_bar_keywords
 from search_engines.web_list import result_html
-import sys
-import os
-sys.path.append(".")
 
 # Initiate Flask
 application = Flask(__name__,
@@ -55,7 +55,7 @@ def show_results():
                 features_['Category_'] = ""  # type: ignore
 
         results_ = search_bar_keywords(
-            keywords=features_['search_keywords_'], # type: ignore
+            keywords=features_['search_keywords_'],  # type: ignore
             category=features_['Category_'])  # type: ignore
 
         for query in results_.values:
