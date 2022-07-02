@@ -50,9 +50,7 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
         return tmp_filter[COLUMNS]
 
 
-def search_bar_meaning(*,
-                       keywords: str,
-                       category: str = None) -> pandas.DataFrame:
+def search_bar_meaning(*, query: str, category: str) -> pandas.DataFrame:
 
     # Enconding query
     pipe = load_pipeline(file_name="FIT_BBC_NEWS_2200_CORPUS_1.pkl")
@@ -66,6 +64,6 @@ def search_bar_meaning(*,
     pipe.steps.append(["Top_Results", Top_Results()])
 
     # Comparing
-    indexes = pipe.fit_transform(keywords)
+    indexes = pipe.fit_transform(query)
 
     return database.iloc[indexes][COLUMNS]  # type: ignore
