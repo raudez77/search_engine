@@ -1,5 +1,4 @@
-from search_engines.data_base.core import TRAINED_MODEL_DIR
-from search_engines.data_base.core import DATA_BASE_LOCATION, NAME
+from search_engines.data_base.core import DATA_BASE_LOCATION, NAME, TRAINED_MODEL_DIR
 import sklearn
 import pandas
 import joblib

@@ -1,11 +1,11 @@
-from typing import List
-from feature_engine.encoding import OneHotEncoder
-from search_engines.data_manager import database
-from search_engines.data_base.core import COLUMNS
-import pandas
-import re
 import sys
 sys.path.append(".")
+from typing import List
+from search_engines.data_manager import database, load_pipeline
+from search_engines.data_base.core import COLUMNS, TRAINED_MODEL_DIR
+from search_engines.enconding_functions import WordEmbedding_Comparing, Top_Results
+import pandas
+import re
 
 
 def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
@@ -50,11 +50,22 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
         return tmp_filter[COLUMNS]
 
 
-def search_bar_meaning(*, indexes: List) -> pandas.DataFrame:
-    """ Return NTop result 
-    Arg:
-        indexes: best N_top indexes from Pipelines
-    Return:
-        Best Matches"""
+def search_bar_meaning(*,
+                       keywords: str,
+                       category: str = None) -> pandas.DataFrame:
+
+    # Enconding query
+    pipe = load_pipeline(file_name="FIT_BBC_NEWS_2200_CORPUS_1.pkl")
+    corpus_transformed = load_pipeline(
+        file_name="CORPUS_BBC_NEWS_2200_CORPUS_1.pkl")
+
+    # Adding Steps
+    pipe.steps.append(
+        ["Comparing",
+         WordEmbedding_Comparing(corpus=corpus_transformed)])
+    pipe.steps.append(["Top_Results", Top_Results()])
+
+    # Comparing
+    indexes = pipe.fit_transform(keywords)
 
     return database.iloc[indexes][COLUMNS]  # type: ignore
