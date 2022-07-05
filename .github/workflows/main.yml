@@ -3,7 +3,7 @@ name: Deploy_Search_Engine
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
