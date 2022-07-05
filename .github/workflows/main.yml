@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy_Search_Engine
 
 on:
   push:
@@ -13,6 +13,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "search-engine-ci-cd" #Must be unique in Heroku
+          heroku_app_name: "search-engine-ci-cd" 
           heroku_email: "raudez77@hotmail.com"
           usedocker: true
