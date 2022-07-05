@@ -1,9 +1,10 @@
 import sys
 sys.path.append(".")
-from typing import List
+from search_engines.enconding_functions import WordEmbedding_Transformer
 from search_engines.data_manager import database, load_pipeline
-from search_engines.data_base.core import COLUMNS, TRAINED_MODEL_DIR
+from search_engines.data_base.core import COLUMNS, PRE_TRAINED_MODEL
 from search_engines.enconding_functions import WordEmbedding_Comparing, Top_Results
+import sklearn.pipeline
 import pandas
 import re
 
@@ -53,9 +54,8 @@ def search_bar_keywords(*, keywords: str, category: str) -> pandas.DataFrame:
 def search_bar_meaning(*, query: str, category: str) -> pandas.DataFrame:
 
     # Enconding query
-    pipe = load_pipeline(file_name="FIT_BBC_NEWS_2200_CORPUS_1.pkl")
-    corpus_transformed = load_pipeline(
-        file_name="CORPUS_BBC_NEWS_2200_CORPUS_1.pkl")
+    pipe = sklearn.pipeline.Pipeline([("Setences_model",WordEmbedding_Transformer(PRE_TRAINED_MODEL))])
+    corpus_transformed = load_pipeline(file_name="CORPUS_BBC_NEWS_2200_CORPUS_1.pkl", map_location = 'cpu')
 
     # Adding Steps
     pipe.steps.append(

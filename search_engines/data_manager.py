@@ -1,9 +1,9 @@
-from search_engines.data_base.core import DATA_BASE_LOCATION, NAME, TRAINED_MODEL_DIR
-import sklearn
-import pandas
-import joblib
 import sys
 sys.path.append(".")
+from search_engines.data_base.core import DATA_BASE_LOCATION, NAME, TRAINED_MODEL_DIR
+import pandas
+import joblib
+
 
 
 def save_pipelines(*, pipeline_to_save, pipeline_name: str, version: str,
@@ -30,11 +30,11 @@ def remove_old_pipelines(*, file_to_keep) -> None:
             model_file.unlink()  #Delete or remove file
 
 
-def load_pipeline(*, file_name: str):
+def load_pipeline(*, file_name: str,map_location= None):
     """ Load Pipelines"""
 
     file_path = TRAINED_MODEL_DIR / file_name
-    trained_model = joblib.load(file_path)
+    trained_model = joblib.load(file_path, mmap_mode = map_location)
     return trained_model
 
 

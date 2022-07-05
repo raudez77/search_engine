@@ -1,28 +1,30 @@
+import sys
+sys.path.append(".")
 from sentence_transformers import SentenceTransformer, util
 import tensorflow
 import sklearn
 import pandas
 import torch
 import numpy
-import nltk
-import re
 
 
 # Process keywords
-class WordEmbedding_Transformer(sklearn.base.BaseEstimator,
-                                sklearn.base.TransformerMixin):
-    """download all-MiniLM-L6-v2"""
-    def __init__(self, pre_train_model: str):
+class WordEmbedding_Transformer (sklearn.base.BaseEstimator, 
+                        sklearn.base.TransformerMixin):
+    
+    """load the model from local"""
+    
+    def __init__(self,pre_train_model_path:str) :
         super().__init__()
-
-        self.pre_train_model = pre_train_model
-        self.model_ = SentenceTransformer(self.pre_train_model)
-
-    def fit(self, X: numpy.array, y: numpy.array = None):
-        return self
-
-    def transform(self, X: numpy.array) -> tensorflow.Tensor:
-        X = self.model_.encode(X, convert_to_tensor=True)
+    
+        self.pre_train_model_path = pre_train_model_path
+        self.model_ = SentenceTransformer(model_name_or_path = self.pre_train_model_path, device ='cpu')
+            
+    def fit (self, X :numpy.array , y:numpy.array = None):
+        return self 
+    
+    def transform(self,X :numpy.array) -> tensorflow.Tensor:
+        X = self.model_.encode(X, convert_to_tensor = True)
         return X
 
 

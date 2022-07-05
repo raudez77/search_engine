@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
-import sys
 import os
+import sys
 sys.path.append(".")
+from flask import Flask, render_template, request
 from search_engines.engines import search_bar_keywords, search_bar_meaning
 from search_engines.web_list import result_html
 
@@ -10,25 +10,21 @@ application = Flask(__name__,
                     template_folder='templates',
                     static_folder='templates/static')
 
-
 # === Loading Different Pages ===
 # ---> Render Main Website
 @application.route("/")
 def home():
     return render_template("index.html")
 
-
 # ---> Render Keyword_Engine
 @application.route("/Search_by_keyword")
 def to_keyword_engine():
     return render_template('keyword_engine.html')
 
-
 # ---> Render Phrase Engines
 @application.route("/Search_by_meaning")
 def to_phrase_engine():
     return render_template('Phrase_engine.html')
-
 
 # === Iterating Through Pages ===
 @application.route("/results by keywords", methods=["POST"])
@@ -42,7 +38,6 @@ def show_results_keywords():
     }
 
     final_results = ''
-
     if request.method == "POST":
         for key_ in features_.keys():
             try:
@@ -59,9 +54,8 @@ def show_results_keywords():
 
         for query in results_.values:
             final_results += result_html(query[0], query[1])
-
+            
     return render_template('results.html', final_results=final_results)
-
 
 @application.route("/results by meaning", methods=["POST"])
 def show_results_meaning():
@@ -95,7 +89,6 @@ def show_results_meaning():
     return render_template('results_meaning.html',
                            render_results_meaning=render_results_meaning)
 
-
 if __name__ == "__main__":
     port = os.environ.get("PORT", 5000)
-    application.run(debug=True, host="127.0.0.1", port=port)
+    application.run(debug=True, host="0.0.0.0", port=port)
